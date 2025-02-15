@@ -15,7 +15,12 @@ export function meta() {
 export const loader = async () => {
 	const raceList = await fetchRaceList();
 
-	return { raceList };
+	return {
+		raceList,
+		Headers: {
+			"Cache-Control": "public, max-age=3600, s-maxage=3600",
+		},
+	};
 };
 
 export default function Home({ loaderData }: Route.ComponentProps) {
