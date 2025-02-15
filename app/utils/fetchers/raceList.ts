@@ -38,9 +38,7 @@ export interface Session {
 }
 
 export const fetchRaceList = async () => {
-	const response = await fetch(
-		'https://api.jolpi.ca/ergast/f1/2025/races/'
-	);
+	const response = await fetch("https://api.jolpi.ca/ergast/f1/2025/races/");
 
 	if (!response.ok) {
 		return null;

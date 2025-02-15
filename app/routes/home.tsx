@@ -1,27 +1,25 @@
-import type { Route } from './+types/home';
-import { Welcome } from '../welcome/welcome';
-import { fetchRaceList } from '~/utils/fetchers/raceList';
+import { fetchRaceList } from "~/utils/fetchers/raceList";
+import { HomePage } from "../homePage/HomePage";
+import type { Route } from "./+types/home";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
 	return [
-		{ title: 'F1 Helper' },
+		{ title: "F1 Helper" },
 		{
-			name: 'description',
-			content:
-				'F1 Helper brings you schedule and stats for the F1 seasons',
+			name: "description",
+			content: "F1 Helper brings you schedule and stats for the F1 seasons",
 		},
 	];
 }
 
-export const loader = async ({
-	params,
-	request,
-}: Route.LoaderArgs) => {
-	const data = await fetchRaceList();
+export const loader = async () => {
+	const raceList = await fetchRaceList();
 
-	return { data };
+	return { raceList };
 };
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-	return <Welcome raceList={loaderData.data} />;
+	const { raceList } = loaderData;
+
+	return <HomePage raceList={raceList} />;
 }
