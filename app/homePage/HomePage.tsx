@@ -6,6 +6,7 @@ import {
 	dateAndTimeEvents,
 	getCountryFlagUrl,
 } from "~/Components/SelectedRace/helpers";
+import React from "react";
 
 interface WelcomeProps {
 	raceList: RaceTable | null;
@@ -23,7 +24,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 			<div className="flex flex-col gap-4">
 				{raceList.Races.map((race) => {
 					return (
-						<>
+						<React.Fragment key={race.round}>
 							{selectedRace === race.round ? (
 								<SelectedRace key={race.round} race={race} />
 							) : (
@@ -51,7 +52,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 									</div>
 								</div>
 							)}
-						</>
+						</React.Fragment>
 					);
 				})}
 			</div>
