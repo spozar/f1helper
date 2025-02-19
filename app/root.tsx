@@ -27,6 +27,16 @@ export const links: Route.LinksFunction = () => [
 	},
 ];
 
+export function meta() {
+	return [
+		{ title: "F1 Helper" },
+		{
+			name: "description",
+			content: "F1 Helper brings you schedule and stats for the F1 seasons",
+		},
+	];
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
