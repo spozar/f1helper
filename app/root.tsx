@@ -7,10 +7,12 @@ import {
 	isRouteErrorResponse,
 } from "react-router";
 
-import type { Route } from "./+types/root";
-import "./app.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+
+import type { Route } from "./+types/root";
+
+import "./app.css";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -31,7 +33,7 @@ export const links: Route.LinksFunction = () => [
 
 export function meta() {
 	return [
-		{ title: "F1 Helper" },
+		{ title: "F1 Helper | Schedule and stats" },
 		{
 			name: "description",
 			content: "F1 Helper brings you schedule and stats for the F1 seasons",
@@ -60,7 +62,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-	return <Outlet />;
+	return (
+		<div>
+			<div className="container">
+				<div className="flex py-4 border-b">
+					<h2 className="text-2xl">F1 Helper - Schedule and stats</h2>
+				</div>
+			</div>
+			<Outlet />
+		</div>
+	);
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
