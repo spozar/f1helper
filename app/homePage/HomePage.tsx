@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
+import { Link } from "react-router";
 
 import { FaFlagCheckered } from "react-icons/fa";
 
@@ -8,7 +9,6 @@ import {
 	dateAndTimeEvents,
 	getCountryFlagUrl,
 } from "~/Components/SelectedRace/helpers";
-import { Link } from "react-router";
 
 interface WelcomeProps {
 	raceList: RaceTable | null;
@@ -21,7 +21,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 		return <>Something went wrong while fetching the Formula 1 data</>;
 	}
 
-	const hasRacePassed = (race: Race) => {
+	const hasRacePassed = useCallback((race: Race) => {
 		const currentDate = new Date();
 		const raceDate = new Date(`${race.date}T${race.time}`);
 
@@ -30,7 +30,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 		}
 
 		return false;
-	};
+	}, []);
 
 	return (
 		<div className="container">
@@ -41,7 +41,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 					</h2>
 				</Link>
 			</div>
-			<div className="flex flex-col gap-4 mt-12">
+			<div className="flex flex-col lg:w-[50%] mt-12">
 				{raceList.Races.map((race, index) => {
 					return (
 						<React.Fragment key={race.round}>
@@ -54,7 +54,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 							) : (
 								<>
 									<div
-										className={`cursor-pointer w-full lg:w-[50%] flex ${hasRacePassed(race) && "line-through opacity-50"}`}
+										className={`cursor-pointer w-full p-2 md:p-3 ${index === 0 && "text-amber-300"} ${index % 2 === 0 && "bg-neutral-900"} flex ${hasRacePassed(race) && "line-through opacity-50"}`}
 										key={race.round}
 										onKeyDown={() => setSelectedRace(race.round)}
 										onClick={() => setSelectedRace(race.round)}
@@ -78,9 +78,11 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 										</div>
 										<div className="text-sm flex gap-4 justify-end items-center">
 											{index === 0 && (
-												<div className="bg-gray-600 text-white rounded-lg h-6 flex items-center px-2 gap-2 w-fit">
-													<p className="text-[12px] font-medium">Next</p>
-													<FaFlagCheckered />
+												<div className="bg-amber-300 text-black rounded-lg flex items-center py-0.5 px-2 gap-2 w-fit">
+													<p className="text-[8px] md:text-[12px] font-medium">
+														Next
+													</p>
+													<FaFlagCheckered size={12} />
 												</div>
 											)}
 											<p className="text-right text-nowrap">
