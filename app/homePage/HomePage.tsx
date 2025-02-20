@@ -18,7 +18,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 	const [selectedRace, setSelectedRace] = useState<string>("");
 
 	if (!raceList) {
-		return <></>;
+		return <>Something went wrong while fetching the Formula 1 data</>;
 	}
 
 	const hasRacePassed = (race: Race) => {
@@ -62,7 +62,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 										<div className="flex w-full items-center justify-between">
 											<div className="flex md:flex-row flex-col gap-4">
 												<div className="flex gap-4">
-													<div className="w-8">
+													<div className=" w-6 md:w-8">
 														<img
 															src={getCountryFlagUrl(race)}
 															className="h-auto pt-1"
@@ -70,14 +70,16 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 														/>
 													</div>
 
-													<h3 className="text-xl">{race.raceName}</h3>
+													<h3 className="text-sm md:text-xl">
+														{race.raceName.replace("Grand Prix", "GP")}
+													</h3>
 												</div>
 											</div>
 										</div>
-										<div className="flex w-32 gap-4 justify-end items-center">
+										<div className="text-sm flex gap-4 justify-end items-center">
 											{index === 0 && (
-												<div className="bg-gray-600 text-white rounded-lg h-8 flex items-center px-2 gap-2 w-fit">
-													<p className="text-sm text-nowrap">Next</p>
+												<div className="bg-gray-600 text-white rounded-lg h-6 flex items-center px-2 gap-2 w-fit">
+													<p className="text-[12px] font-medium">Next</p>
 													<FaFlagCheckered />
 												</div>
 											)}
