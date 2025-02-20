@@ -8,6 +8,7 @@ import {
 	dateAndTimeEvents,
 	getCountryFlagUrl,
 } from "~/Components/SelectedRace/helpers";
+import { Link } from "react-router";
 
 interface WelcomeProps {
 	raceList: RaceTable | null;
@@ -32,43 +33,62 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 	};
 
 	return (
-		<div className="container mt-12">
-			<div className="flex flex-col gap-4">
+		<div className="container">
+			<div className="flex py-4 border-b sticky top-0 bg-gray-950">
+				<Link to={"/"} reloadDocument>
+					<h2 className="text-2xl font-semibold">
+						F1 Helper | Schedule and stats
+					</h2>
+				</Link>
+			</div>
+			<div className="flex flex-col gap-4 mt-12">
 				{raceList.Races.map((race, index) => {
 					return (
 						<React.Fragment key={race.round}>
 							{selectedRace === race.round ? (
-								<SelectedRace key={race.round} race={race} />
-							) : (
-								<div
-									className={`cursor-pointer flex ${hasRacePassed(race) && "line-through opacity-50"}`}
+								<SelectedRace
 									key={race.round}
-									onKeyDown={() => setSelectedRace(race.round)}
-									onClick={() => setSelectedRace(race.round)}
-								>
-									<div className="flex h-12 w-[40%]">
-										<div className="flex gap-4">
-											<div className="w-8">
-												<img
-													src={getCountryFlagUrl(race)}
-													className="h-auto pt-1"
-													alt="country flag"
-												/>
+									race={race}
+									setSelectedRace={setSelectedRace}
+								/>
+							) : (
+								<>
+									<div
+										className={`cursor-pointer w-full lg:w-[50%] flex ${hasRacePassed(race) && "line-through opacity-50"}`}
+										key={race.round}
+										onKeyDown={() => setSelectedRace(race.round)}
+										onClick={() => setSelectedRace(race.round)}
+									>
+										<div className="flex w-full items-center justify-between">
+											<div className="flex md:flex-row flex-col gap-4">
+												<div className="flex gap-4">
+													<div className="w-8">
+														<img
+															src={getCountryFlagUrl(race)}
+															className="h-auto pt-1"
+															alt="country flag"
+														/>
+													</div>
+
+													<h3 className="text-xl">{race.raceName}</h3>
+												</div>
 											</div>
-											<h3 className="text-xl">{race.raceName}</h3>
+										</div>
+										<div className="flex w-32 gap-4 justify-end items-center">
 											{index === 0 && (
-												<div className="bg-gray-600 text-white rounded-lg h-8 flex items-center px-2 gap-2">
-													<p className="leading-none">Upcoming race</p>
+												<div className="bg-gray-600 text-white rounded-lg h-8 flex items-center px-2 gap-2 w-fit">
+													<p className="text-sm text-nowrap">Next</p>
 													<FaFlagCheckered />
 												</div>
 											)}
+											<p className="text-right text-nowrap">
+												{dateAndTimeEvents(race).grandPrixDate}
+											</p>
+											<p>{dateAndTimeEvents(race).grandPrixTime}</p>
 										</div>
 									</div>
-									<div className="flex gap-4 w-32">
-										<p>{dateAndTimeEvents(race).grandPrixDate}</p>
-										<p>{dateAndTimeEvents(race).grandPrixTime}</p>
-									</div>
-								</div>
+									<div className="border-b border-gray-500 w-full" />
+								</>
 							)}
 						</React.Fragment>
 					);

@@ -1,4 +1,5 @@
 import {
+	Link,
 	Links,
 	Meta,
 	Outlet,
@@ -64,11 +65,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
 	return (
 		<div>
-			<div className="container">
-				<div className="flex py-4 border-b">
-					<h2 className="text-2xl">F1 Helper - Schedule and stats</h2>
-				</div>
-			</div>
 			<Outlet />
 		</div>
 	);

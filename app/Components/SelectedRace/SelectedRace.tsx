@@ -4,9 +4,10 @@ import { Countdown } from "../Countdown/Countdown";
 
 interface SelectedRaceProps {
 	race: Race;
+	setSelectedRace: (race: string) => void;
 }
 
-const SelectedRace = ({ race }: SelectedRaceProps) => {
+const SelectedRace = ({ race, setSelectedRace }: SelectedRaceProps) => {
 	const {
 		firstPracticeDate,
 		firstPracticeTime,
@@ -50,7 +51,11 @@ const SelectedRace = ({ race }: SelectedRaceProps) => {
 	];
 
 	return (
-		<div>
+		<div
+			onKeyDown={() => setSelectedRace("")}
+			onClick={() => setSelectedRace("")}
+			className="cursor-pointer"
+		>
 			<div className="flex items-center gap-2">
 				<img className="h-8" src={getCountryFlagUrl(race)} alt="country flag" />
 				<h1 className="text-4xl">{race.raceName}</h1>
@@ -76,6 +81,7 @@ const SelectedRace = ({ race }: SelectedRaceProps) => {
 					)}
 				</div>
 			</div>
+			<div className="border-b border-gray-500 w-full mt-4" />
 		</div>
 	);
 };
