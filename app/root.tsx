@@ -14,6 +14,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import type { Route } from "./+types/root";
 
 import "./app.css";
+import { useEffect } from "react";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -57,6 +58,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Scripts />
 				<Analytics />
 				<SpeedInsights />
+				<script
+					data-name="BMC-Widget"
+					data-cfasync="false"
+					src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+					data-id="spozar"
+					data-description="Support me on Buy me a coffee!"
+					data-message=""
+					data-color="#FF5F5F"
+					data-position="Right"
+					data-x_margin="18"
+					data-y_margin="18"
+				/>
 			</body>
 		</html>
 	);
