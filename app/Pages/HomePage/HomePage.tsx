@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from "react";
-import { Link } from "react-router";
 
 import { FaFlagCheckered } from "react-icons/fa";
 
@@ -9,6 +8,7 @@ import {
 	dateAndTimeEvents,
 	getCountryFlagUrl,
 } from "~/Components/SelectedRace/helpers";
+import Header from "~/Modules/Header/Header";
 
 interface WelcomeProps {
 	raceList: RaceTable | null;
@@ -34,13 +34,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 
 	return (
 		<div className="container">
-			<div className="flex py-4 border-b sticky top-0 bg-gray-950">
-				<Link to={"/"} reloadDocument>
-					<h2 className="text-2xl font-semibold">
-						F1 Helper | Schedule and stats
-					</h2>
-				</Link>
-			</div>
+			<Header />
 			<div className="flex flex-col lg:w-[50%] mt-12">
 				{raceList.Races.map((race, index) => {
 					return (

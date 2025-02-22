@@ -58,22 +58,22 @@ export function Countdown({ date, time }: CountDownProps) {
 	const formattedSeconds = String(seconds).padStart(2, "0");
 
 	return (
-		<div className="font-mono font-medium grid grid-cols-4 gap-4 justify-items-start">
-			<div className="flex flex-col items-center flex-1">
-				<p className="font-mono font-medium text-3xl">{days}</p>
+		<div className="font-mono font-medium flex gap-4">
+			<div className="flex flex-col">
+				<p className="font-mono font-medium text-xl">{days}</p>
 				<p className="text-xs">days</p>
 			</div>
-			<div className="flex flex-col items-center flex-1">
-				<p className="font-mono font-medium text-3xl">{formattedHours}</p>
+			<div className="flex flex-col">
+				<p className="font-mono font-medium text-xl">{formattedHours}</p>
 				<p className="text-xs">hours</p>
 			</div>
-			<div className="flex flex-col items-center flex-1">
-				<p className="font-mono font-medium text-3xl">{formattedMinutes}</p>
-				<p className="text-xs">minutes</p>
+			<div className="flex flex-col">
+				<p className="font-mono font-medium text-xl">{formattedMinutes}</p>
+				<p className="text-xs">min</p>
 			</div>
-			<div className="flex flex-col items-center flex-1">
-				<p className="font-mono font-medium text-3xl">{formattedSeconds}</p>
-				<p className="text-xs">seconds</p>
+			<div className="flex flex-col">
+				<p className="font-mono font-medium text-xl">{formattedSeconds}</p>
+				<p className="text-xs">sec</p>
 			</div>
 		</div>
 	);

@@ -1,4 +1,4 @@
-import { formatDateTime } from "~/homePage/helpers";
+import { formatDateTime } from "~/Pages/HomePage/helpers";
 import { countryFlags } from "~/utils/constants/constants";
 import type { Race } from "~/utils/fetchers/raceList";
 
