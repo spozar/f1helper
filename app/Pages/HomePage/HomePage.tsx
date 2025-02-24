@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 
 import { FaFlagCheckered } from "react-icons/fa";
 
@@ -9,17 +9,29 @@ import {
 	getCountryFlagUrl,
 } from "~/Components/SelectedRace/helpers";
 import Header from "~/Modules/Header/Header";
+import { Expanded, NotExpanded } from "~/Components/SVGs/SVGs";
+import AnimateHeight from "react-animate-height";
 
 interface WelcomeProps {
 	raceList: RaceTable | null;
 }
 
 export const HomePage = ({ raceList }: WelcomeProps) => {
-	const [selectedRace, setSelectedRace] = useState<string>("");
+	const [selectedRace, setSelectedRace] = useState<string[]>([]);
 
 	if (!raceList) {
 		return <>Something went wrong while fetching the Formula 1 data</>;
 	}
+
+	const handleClick = (raceRound: string) => {
+		if (selectedRace.includes(raceRound)) {
+			setSelectedRace([
+				...selectedRace.filter((selectedRace) => selectedRace !== raceRound),
+			]);
+		} else {
+			setSelectedRace([...selectedRace, raceRound]);
+		}
+	};
 
 	const hasRacePassed = useCallback((race: Race) => {
 		const currentDate = new Date();
@@ -41,6 +53,8 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 						<React.Fragment key={race.round}>
 							<div
 								className={`${index % 2 === 0 && "bg-neutral-900"} flex gap-2`}
+								onKeyDown={() => handleClick(race.round)}
+								onClick={() => handleClick(race.round)}
 							>
 								<div className="w-6 min-w-6 md:w-8 pt-2 md:pt-3 ml-2">
 									<img
@@ -49,23 +63,26 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 										alt="country flag"
 									/>
 								</div>
+
 								<div className="flex flex-col w-full">
 									<div
 										className={`flex cursor-pointer w-full p-2 md:p-3 ${index === 0 && "text-amber-300"} ${hasRacePassed(race) && "line-through opacity-50"}`}
 										key={race.round}
-										onKeyDown={() => setSelectedRace(race.round)}
-										onClick={() =>
-											selectedRace === race.round
-												? setSelectedRace("")
-												: setSelectedRace(race.round)
-										}
 									>
-										<div className="w-full">
+										<div className="relative w-full flex items-center gap-2">
 											<h3 className="text-sm">
 												{race.raceName.replace("Grand Prix", "GP")}
 											</h3>
+											<div className="opacity-70">
+												{selectedRace.includes(race.round) ? (
+													<Expanded />
+												) : (
+													<NotExpanded />
+												)}
+											</div>
 										</div>
-										<div className="text-sm flex gap-2 md:gap-4 justify-end">
+
+										<div className="text-sm flex flex-wrap-reverse gap-2 md:gap-4 justify-end w-full">
 											{index === 0 && (
 												<div className="bg-amber-300 text-black rounded-sm flex px-1 gap-1 w-fit items-center ">
 													<p className="text-[8px] md:text-[12px] font-medium">
@@ -74,20 +91,24 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 													<FaFlagCheckered size={12} />
 												</div>
 											)}
-											<p className="text-right text-nowrap">
-												{dateAndTimeEvents(race).grandPrixDate}
-											</p>
-											<p>{dateAndTimeEvents(race).grandPrixTime}</p>
+											<div className="flex gap-2 md:gap-4">
+												<p className="text-right text-nowrap">
+													{dateAndTimeEvents(race).grandPrixDate}
+												</p>
+												<p>{dateAndTimeEvents(race).grandPrixTime}</p>
+											</div>
 										</div>
 									</div>
-									{selectedRace === race.round && (
-										<div className="mb-4">
-											<SelectedRace
-												race={race}
-												setSelectedRace={setSelectedRace}
-											/>
-										</div>
-									)}
+									<AnimateHeight
+										height={selectedRace.includes(race.round) ? "auto" : 0}
+										duration={300}
+									>
+										{selectedRace.includes(race.round) && (
+											<div className="mb-4">
+												<SelectedRace race={race} />
+											</div>
+										)}
+									</AnimateHeight>
 								</div>
 							</div>
 						</React.Fragment>

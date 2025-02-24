@@ -4,10 +4,9 @@ import { Countdown } from "../Countdown/Countdown";
 
 interface SelectedRaceProps {
 	race: Race;
-	setSelectedRace: (race: string) => void;
 }
 
-const SelectedRace = ({ race, setSelectedRace }: SelectedRaceProps) => {
+const SelectedRace = ({ race }: SelectedRaceProps) => {
 	const {
 		firstPracticeDate,
 		firstPracticeTime,
@@ -51,11 +50,7 @@ const SelectedRace = ({ race, setSelectedRace }: SelectedRaceProps) => {
 	];
 
 	return (
-		<div
-			onKeyDown={() => setSelectedRace("")}
-			onClick={() => setSelectedRace("")}
-			className="cursor-pointer px-2 md:px-3"
-		>
+		<div className="cursor-pointer px-2 md:px-3">
 			<div className="flex flex-col gap-4">
 				<div className="flex flex-col">
 					<div>
