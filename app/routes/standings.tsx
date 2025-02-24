@@ -23,9 +23,10 @@ export function meta() {
 }
 
 export const loader = async () => {
-	const driverStandings = await fetchDriverStandings("2024");
-
-	const constructorStandings = await fetchConstructorStandings("2024");
+	const [driverStandings, constructorStandings] = await Promise.all([
+		fetchDriverStandings("2024"),
+		fetchConstructorStandings("2024"),
+	]);
 
 	return {
 		driverStandings,

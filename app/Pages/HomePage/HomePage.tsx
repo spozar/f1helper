@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { FaFlagCheckered } from "react-icons/fa";
 
@@ -11,6 +11,7 @@ import {
 import Header from "~/Modules/Header/Header";
 import { Expanded, NotExpanded } from "~/Components/SVGs/SVGs";
 import AnimateHeight from "react-animate-height";
+import { addHours, parseISO } from "date-fns";
 
 interface WelcomeProps {
 	raceList: RaceTable | null;
@@ -18,6 +19,8 @@ interface WelcomeProps {
 
 export const HomePage = ({ raceList }: WelcomeProps) => {
 	const [selectedRace, setSelectedRace] = useState<string[]>([]);
+
+	const [nextRace, setNextRace] = useState<string>("");
 
 	if (!raceList) {
 		return <>Something went wrong while fetching the Formula 1 data</>;
@@ -32,6 +35,17 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 			setSelectedRace([...selectedRace, raceRound]);
 		}
 	};
+
+	useEffect(() => {
+		const currentDatePlusOneHour = addHours(new Date(), 1);
+		const nextRace = raceList.Races.find(
+			(race) =>
+				currentDatePlusOneHour <
+				new Date(parseISO(`${race.date}T${race.time}`)),
+		);
+
+		setNextRace(nextRace?.round || "");
+	}, [raceList]);
 
 	const hasRacePassed = useCallback((race: Race) => {
 		const currentDate = new Date();
@@ -83,7 +97,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 										</div>
 
 										<div className="text-sm flex flex-wrap-reverse gap-2 md:gap-4 justify-end w-full">
-											{index === 0 && (
+											{nextRace === race.round && (
 												<div className="bg-amber-300 text-black rounded-sm flex px-1 gap-1 w-fit items-center ">
 													<p className="text-[8px] md:text-[12px] font-medium">
 														Next
@@ -103,11 +117,9 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 										height={selectedRace.includes(race.round) ? "auto" : 0}
 										duration={300}
 									>
-										{selectedRace.includes(race.round) && (
-											<div className="mb-4">
-												<SelectedRace race={race} />
-											</div>
-										)}
+										<div className="mb-4">
+											<SelectedRace race={race} />
+										</div>
 									</AnimateHeight>
 								</div>
 							</div>
