@@ -56,15 +56,14 @@ const SelectedRace = ({ race, setSelectedRace }: SelectedRaceProps) => {
 			onClick={() => setSelectedRace("")}
 			className="cursor-pointer px-2 md:px-3"
 		>
-			<div className="flex justify-between gap-2">
-				<div className="md:justify-center flex flex-col">
-					<p>{`${grandPrixDate} ${grandPrixTime}`}</p>
+			<div className="flex flex-wrap  justify-between gap-2">
+				<div className="flex flex-col self-start">
 					<h4>Starts in:</h4>
-					<div className="md:self-end">
+					<div>
 						<Countdown date={race.date} time={race.time} />
 					</div>
 				</div>
-				<div className="flex flex-col gap-2 items-end">
+				<div className="flex grow flex-col gap-2 items-end">
 					{sessions.map(
 						(session) =>
 							session.date && (

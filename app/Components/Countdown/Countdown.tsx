@@ -60,19 +60,19 @@ export function Countdown({ date, time }: CountDownProps) {
 	return (
 		<div className="font-mono font-medium flex gap-4">
 			<div className="flex flex-col">
-				<p className="font-mono font-medium text-xl">{days}</p>
+				<p className="font-mono font-medium ">{days}</p>
 				<p className="text-xs">days</p>
 			</div>
 			<div className="flex flex-col">
-				<p className="font-mono font-medium text-xl">{formattedHours}</p>
+				<p className="font-mono font-medium ">{formattedHours}</p>
 				<p className="text-xs">hours</p>
 			</div>
 			<div className="flex flex-col">
-				<p className="font-mono font-medium text-xl">{formattedMinutes}</p>
+				<p className="font-mono font-medium ">{formattedMinutes}</p>
 				<p className="text-xs">min</p>
 			</div>
 			<div className="flex flex-col">
-				<p className="font-mono font-medium text-xl">{formattedSeconds}</p>
+				<p className="font-mono font-medium">{formattedSeconds}</p>
 				<p className="text-xs">sec</p>
 			</div>
 		</div>
