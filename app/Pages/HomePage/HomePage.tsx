@@ -65,9 +65,9 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 												{race.raceName.replace("Grand Prix", "GP")}
 											</h3>
 										</div>
-										<div className="text-sm flex gap-4 justify-end">
+										<div className="text-sm flex gap-2 md:gap-4 justify-end">
 											{index === 0 && (
-												<div className="bg-amber-300 text-black rounded-lg flex px-2 gap-2 w-fit items-center ">
+												<div className="bg-amber-300 text-black rounded-sm flex px-1 gap-1 w-fit items-center ">
 													<p className="text-[8px] md:text-[12px] font-medium">
 														Next
 													</p>

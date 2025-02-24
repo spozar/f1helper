@@ -27,17 +27,17 @@ const SelectedRace = ({ race, setSelectedRace }: SelectedRaceProps) => {
 
 	const sessions = [
 		{
-			name: "FP1",
+			name: "Free practice 1",
 			date: firstPracticeDate,
 			time: firstPracticeTime,
 		},
 		{
-			name: "FP2",
+			name: "Free practice 2",
 			date: secondPracticeDate,
 			time: secondPracticeTime,
 		},
 		{
-			name: "FP3",
+			name: "Free practice 3",
 			date: thirdPracticeDate,
 			time: thirdPracticeTime,
 		},
@@ -56,21 +56,26 @@ const SelectedRace = ({ race, setSelectedRace }: SelectedRaceProps) => {
 			onClick={() => setSelectedRace("")}
 			className="cursor-pointer px-2 md:px-3"
 		>
-			<div className="flex flex-wrap  justify-between gap-2">
-				<div className="flex flex-col self-start">
-					<h4>Starts in:</h4>
+			<div className="flex flex-col gap-4">
+				<div className="flex flex-col">
 					<div>
+						<h4>Starts in:</h4>
 						<Countdown date={race.date} time={race.time} />
 					</div>
 				</div>
-				<div className="flex grow flex-col gap-2 items-end">
+				<div className="flex flex-col gap-2 items-end">
 					{sessions.map(
 						(session) =>
 							session.date && (
-								<div key={session.name} className="flex text-sm gap-4 -mb-1">
+								<div
+									key={session.name}
+									className="flex text-sm justify-between w-full"
+								>
 									<p>{session.name}</p>
-									<p>{session.date}</p>
-									<p>{session.time}</p>
+									<p className="flex gap-2 md:gap-4">
+										<span>{session.date}</span>
+										<span>{session.time}</span>
+									</p>
 								</div>
 							),
 					)}
