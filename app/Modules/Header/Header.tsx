@@ -17,14 +17,16 @@ const Header = () => {
 			</div>
 			<div className="flex gap-4">
 				<Link to={"/"}>
-					<p className={`font-semibold ${currentPath === "/" && "underline"}`}>
+					<p
+						className={`font-semibold ${currentPath === "/" && "border-b border-b-white"}`}
+					>
 						Home
 					</p>
 				</Link>
 
 				<Link to={"/standings"}>
 					<p
-						className={`font-semibold ${currentPath === "/standings" && "underline"}`}
+						className={`font-semibold ${currentPath === "/standings" && "border-b border-b-white"}`}
 					>
 						Standings
 					</p>

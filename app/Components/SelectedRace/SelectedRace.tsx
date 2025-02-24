@@ -1,5 +1,5 @@
 import type { Race } from "~/utils/fetchers/raceList";
-import { dateAndTimeEvents, getCountryFlagUrl } from "./helpers";
+import { dateAndTimeEvents } from "./helpers";
 import { Countdown } from "../Countdown/Countdown";
 
 interface SelectedRaceProps {
@@ -54,12 +54,8 @@ const SelectedRace = ({ race, setSelectedRace }: SelectedRaceProps) => {
 		<div
 			onKeyDown={() => setSelectedRace("")}
 			onClick={() => setSelectedRace("")}
-			className="cursor-pointer p-2"
+			className="cursor-pointer px-2 md:px-3"
 		>
-			<div className="flex items-center gap-2">
-				<img className="h-4" src={getCountryFlagUrl(race)} alt="country flag" />
-				<h2 className="text-xl">{race.raceName}</h2>
-			</div>
 			<div className="flex justify-between gap-2">
 				<div className="md:justify-center flex flex-col">
 					<p>{`${grandPrixDate} ${grandPrixTime}`}</p>
@@ -81,7 +77,6 @@ const SelectedRace = ({ race, setSelectedRace }: SelectedRaceProps) => {
 					)}
 				</div>
 			</div>
-			<div className="border-b border-gray-500 w-full mt-4" />
 		</div>
 	);
 };

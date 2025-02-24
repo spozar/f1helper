@@ -1,5 +1,4 @@
 import {
-	Link,
 	Links,
 	Meta,
 	Outlet,
@@ -14,7 +13,6 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import type { Route } from "./+types/root";
 
 import "./app.css";
-import { useEffect } from "react";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -52,7 +50,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Meta />
 				<Links />
 				<script
-					strategy="lazyOnload"
 					data-name="BMC-Widget"
 					data-cfasync="false"
 					src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
