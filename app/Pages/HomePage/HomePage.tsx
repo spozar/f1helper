@@ -42,10 +42,10 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 							<div
 								className={`${index % 2 === 0 && "bg-neutral-900"} flex gap-2`}
 							>
-								<div className="w-6 min-w-6 md:w-10 pt-2 md:pt-3 ml-2">
+								<div className="w-6 min-w-6 md:w-8 pt-2 md:pt-3 ml-2">
 									<img
 										src={getCountryFlagUrl(race)}
-										className="h-auto pt-1"
+										className="pt-1 max-h-6"
 										alt="country flag"
 									/>
 								</div>
@@ -61,7 +61,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 										}
 									>
 										<div className="w-full">
-											<h3 className="text-smmd:text-xl">
+											<h3 className="text-sm">
 												{race.raceName.replace("Grand Prix", "GP")}
 											</h3>
 										</div>
