@@ -11,7 +11,7 @@ import {
 import Header from "~/Modules/Header/Header";
 import { Expanded, NotExpanded } from "~/Components/SVGs/SVGs";
 import AnimateHeight from "react-animate-height";
-import { addHours, parseISO } from "date-fns";
+import { addHours } from "date-fns";
 
 interface WelcomeProps {
 	raceList: RaceTable | null;
@@ -39,9 +39,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 	useEffect(() => {
 		const currentDatePlusOneHour = addHours(new Date(), 1);
 		const nextRace = raceList.Races.find(
-			(race) =>
-				currentDatePlusOneHour <
-				new Date(parseISO(`${race.date}T${race.time}`)),
+			(race) => currentDatePlusOneHour < new Date(`${race.date}T${race.time}`),
 		);
 
 		setNextRace(nextRace?.round || "");
