@@ -15,7 +15,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
-	{ rel: "canonical", href: "https://f1calendar.com" },
+	{ rel: "canonical", href: "https://f1helper.com" },
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
 	{
 		rel: "preconnect",
