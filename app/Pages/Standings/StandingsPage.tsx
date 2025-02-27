@@ -1,6 +1,4 @@
 import { motion } from "motion/react";
-import { useState } from "react";
-import { useSearchParams } from "react-router";
 
 import type {
 	ConstructorStandingsTable,
@@ -19,8 +17,6 @@ const StandingsPage = ({
 	if (!driverStandings && !constructorStandings) {
 		return <p>Something went wrong while fetching standings</p>;
 	}
-
-	const [searchParams, setSearchParams] = useSearchParams();
 
 	const highestPoints =
 		driverStandings?.StandingsLists[0]?.DriverStandings[0]?.points || "0";

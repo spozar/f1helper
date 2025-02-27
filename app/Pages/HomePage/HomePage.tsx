@@ -4,10 +4,7 @@ import { FaFlagCheckered } from "react-icons/fa";
 
 import SelectedRace from "~/Modules/SelectedRace/SelectedRace";
 import type { RaceTable } from "~/utils/fetchers/raceList";
-import {
-	dateAndTimeEvents,
-	getCountryFlagUrl,
-} from "~/Modules/SelectedRace/helpers";
+import { getCountryFlagUrl } from "~/Modules/SelectedRace/helpers";
 import { Expanded, NotExpanded } from "~/Components/SVGs/SVGs";
 import AnimateHeight from "react-animate-height";
 import { addHours } from "date-fns";

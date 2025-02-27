@@ -1,7 +1,9 @@
 import { fetchRaceList } from "~/utils/fetchers/raceList";
 import { HomePage } from "../Pages/HomePage/HomePage";
 import type { Route } from "./+types/home";
-import type { LoaderFunctionArgs } from "react-router";
+import { Await, useNavigation, type LoaderFunctionArgs } from "react-router";
+import { Suspense } from "react";
+import HomePageSkeleton from "~/Pages/HomePage/HomePageSkeleton";
 
 export function headers(_: Route.HeadersArgs) {
 	return {
@@ -26,5 +28,18 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 export default function Home({ loaderData }: Route.ComponentProps) {
 	const { raceList } = loaderData;
 
-	return <HomePage raceList={raceList} />;
+	const navigation = useNavigation();
+	const isLoading = navigation.state === "loading";
+
+	if (isLoading) {
+		return <HomePageSkeleton />;
+	}
+
+	return (
+		<Suspense fallback={<HomePageSkeleton />}>
+			<Await resolve={raceList}>
+				{(raceList) => <HomePage raceList={raceList} />}
+			</Await>
+		</Suspense>
+	);
 }
