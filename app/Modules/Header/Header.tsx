@@ -11,7 +11,8 @@ const Header = () => {
 				<Link to={"/"} reloadDocument>
 					<h2 className="text-2xl font-extrabold">
 						<span className="text-red-700">F</span>
-						<span>1 Helper | Schedule and stats</span>
+						<span>1 Helper |</span>
+						<span className="text-xl"> Schedule and stats</span>
 					</h2>
 				</Link>
 			</div>

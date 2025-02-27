@@ -4,6 +4,7 @@ import {
 	fetchDriverStandings,
 } from "~/utils/fetchers/standings";
 import StandingsPage from "~/Pages/Standings/StandingsPage";
+import type { LoaderFunctionArgs } from "react-router";
 
 export function headers(_: Route.HeadersArgs) {
 	return {
@@ -22,10 +23,15 @@ export function meta() {
 	];
 }
 
-export const loader = async () => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+	const url = new URL(request.url);
+
+	const year =
+		url.searchParams.get("year") || new Date().getFullYear().toString();
+
 	const [driverStandings, constructorStandings] = await Promise.all([
-		fetchDriverStandings("2024"),
-		fetchConstructorStandings("2024"),
+		fetchDriverStandings(year),
+		fetchConstructorStandings(year),
 	]);
 
 	return {

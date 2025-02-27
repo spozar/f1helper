@@ -53,10 +53,8 @@ const SelectedRace = ({ race }: SelectedRaceProps) => {
 		<div className="cursor-pointer px-2 md:px-3">
 			<div className="flex flex-col gap-4">
 				<div className="flex flex-col">
-					<div>
-						<h4>Starts in:</h4>
-						<Countdown date={race.date} time={race.time} />
-					</div>
+					<h4 className="self-start">Starts in:</h4>
+					<Countdown date={race.date} time={race.time} />
 				</div>
 				<div className="flex flex-col gap-2 items-end">
 					{sessions.map(
