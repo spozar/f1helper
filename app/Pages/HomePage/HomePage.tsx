@@ -1,16 +1,18 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FaFlagCheckered } from "react-icons/fa";
 
-import SelectedRace from "~/Components/SelectedRace/SelectedRace";
-import type { Race, RaceTable } from "~/utils/fetchers/raceList";
+import SelectedRace from "~/Modules/SelectedRace/SelectedRace";
+import type { RaceTable } from "~/utils/fetchers/raceList";
 import {
 	dateAndTimeEvents,
 	getCountryFlagUrl,
-} from "~/Components/SelectedRace/helpers";
+} from "~/Modules/SelectedRace/helpers";
 import { Expanded, NotExpanded } from "~/Components/SVGs/SVGs";
 import AnimateHeight from "react-animate-height";
 import { addHours } from "date-fns";
+import { hasRacePassed } from "~/utils/helpers/general";
+import RaceDateTime from "./Components/RaceDateTime";
 
 interface WelcomeProps {
 	raceList: RaceTable | null;
@@ -43,17 +45,6 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 
 		setNextRace(nextRace?.round || "");
 	}, [raceList]);
-
-	const hasRacePassed = useCallback((race: Race) => {
-		const currentDate = new Date();
-		const raceDate = new Date(`${race.date}T${race.time}`);
-
-		if (currentDate > raceDate) {
-			return true;
-		}
-
-		return false;
-	}, []);
 
 	return (
 		<div className="flex flex-col lg:w-[70%] mt-4">
@@ -100,12 +91,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 												<FaFlagCheckered size={12} />
 											</div>
 										)}
-										<div className="flex gap-2 md:gap-4">
-											<p className="text-right text-nowrap">
-												{dateAndTimeEvents(race).grandPrixDate}
-											</p>
-											<p>{dateAndTimeEvents(race).grandPrixTime}</p>
-										</div>
+										<RaceDateTime race={race} />
 									</div>
 								</div>
 								<AnimateHeight

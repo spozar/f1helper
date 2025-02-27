@@ -12,8 +12,8 @@
 		"format": "biome check --write"
 	},
 	"dependencies": {
-		"@react-router/node": "^7.1.5",
-		"@react-router/serve": "^7.1.5",
+		"@react-router/node": "^7.2",
+		"@react-router/serve": "^7.2",
 		"@vercel/analytics": "^1.5.0",
 		"@vercel/react-router": "^1.0.2",
 		"@vercel/speed-insights": "^1.2.0",
@@ -26,11 +26,11 @@
 		"react-animate-height": "^3.2.3",
 		"react-dom": "^19.0.0",
 		"react-icons": "^5.5.0",
-		"react-router": "^7.1.5"
+		"react-router": "^7.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@react-router/dev": "^7.1.5",
+		"@react-router/dev": "^7.2",
 		"@tailwindcss/vite": "^4.0.0",
 		"@types/node": "^20",
 		"@types/react": "^19.0.1",

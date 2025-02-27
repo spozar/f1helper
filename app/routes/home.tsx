@@ -1,6 +1,7 @@
 import { fetchRaceList } from "~/utils/fetchers/raceList";
 import { HomePage } from "../Pages/HomePage/HomePage";
 import type { Route } from "./+types/home";
+import type { LoaderFunctionArgs } from "react-router";
 
 export function headers(_: Route.HeadersArgs) {
 	return {
@@ -9,8 +10,13 @@ export function headers(_: Route.HeadersArgs) {
 	};
 }
 
-export const loader = async () => {
-	const raceList = await fetchRaceList("2025");
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+	const url = new URL(request.url);
+
+	const year =
+		url.searchParams.get("year") || new Date().getFullYear().toString();
+
+	const raceList = await fetchRaceList(year);
 
 	return {
 		raceList,

@@ -21,4 +21,5 @@ export const countryFlags = [
 	{ name: "United States", flag: "https://flagcdn.com/h60/us.png" },
 	{ name: "Qatar", flag: "https://flagcdn.com/h60/qa.png" },
 	{ name: "UAE", flag: "https://flagcdn.com/h60/ae.png" },
+	{ name: "France", flag: "https://flagcdn.com/h60/fr.png" },
 ];

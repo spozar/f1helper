@@ -35,31 +35,8 @@ const StandingsPage = ({
 		return percentage;
 	};
 
-	const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-		const year = e.target.value;
-		setSearchParams({ year });
-	};
-
 	return (
 		<>
-			<select
-				value={searchParams.get("year") || "2025"}
-				onChange={handleYearChange}
-				className="text-2xl mt-2 mb-2 "
-			>
-				<option className="text-black text-base" value="2025">
-					2025
-				</option>
-				<option className="text-black text-base" value="2024">
-					2024
-				</option>
-				<option className="text-black text-base" value="2023">
-					2023
-				</option>
-				<option className="text-black text-base" value="2022">
-					2022
-				</option>
-			</select>
 			{driverStandings?.StandingsLists.length === 0 && (
 				<p>
 					No standings available for the selected season. Please select another

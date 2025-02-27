@@ -1,6 +1,6 @@
 import type { Race } from "~/utils/fetchers/raceList";
 import { dateAndTimeEvents } from "./helpers";
-import { Countdown } from "../Countdown/Countdown";
+import { Countdown } from "~/Components/Countdown/Countdown";
 
 interface SelectedRaceProps {
 	race: Race;
