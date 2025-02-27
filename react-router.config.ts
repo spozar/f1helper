@@ -9,6 +9,5 @@ export default {
 	future: {
 		unstable_splitRouteModules: true,
 		unstable_optimizeDeps: true,
-		unstable_viteEnvironmentApi: true,
 	},
 } satisfies Config;
