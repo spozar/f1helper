@@ -31,6 +31,21 @@ const StandingsPage = ({
 		return percentage;
 	};
 
+	const constructorColors: Record<string, string> = {
+		Mercedes: "#00A19B",
+		"Red Bull": "#0600EF",
+		Ferrari: "#DC0000",
+		McLaren: "#FF8700",
+		"Aston Martin": "#006F62",
+		"Alpine F1 Team": "#0090FF",
+		Williams: "#005AFF",
+		"RB F1 Team": "#00293F",
+		AlphaTauri: "#00293F",
+		"Kick Sauber": "#900000",
+		"Alfa Romeo": "#900000",
+		"Haas F1 Team": "#FFFFFF",
+	};
+
 	return (
 		<>
 			{driverStandings?.StandingsLists.length === 0 && (
@@ -50,7 +65,11 @@ const StandingsPage = ({
 							<p>{driver.Constructors[0].name}</p>
 						</div>
 						<motion.div
-							className="h-1 bg-yellow-300 w-0"
+							className="h-1 w-0"
+							style={{
+								backgroundColor:
+									constructorColors[driver.Constructors[0].name] || "#CCCCCC",
+							}}
 							animate={{
 								width: `${percentageDifference(driver.points)}%`,
 								transition: {
