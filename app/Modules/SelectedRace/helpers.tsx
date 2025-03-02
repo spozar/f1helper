@@ -3,37 +3,38 @@ import { countryFlags } from "~/utils/constants/constants";
 import type { Race } from "~/utils/fetchers/raceList";
 
 export const dateAndTimeEvents = (race: Race) => {
-	// Always call the hook by passing the UTC string or undefined.
 	const firstPractice = formatDateTime(
-		race.FirstPractice
+		race.FirstPractice?.date && race.FirstPractice?.time
 			? `${race.FirstPractice.date}T${race.FirstPractice.time}`
 			: undefined,
 	);
 	const secondPractice = formatDateTime(
-		race.SecondPractice
+		race.SecondPractice?.date && race.SecondPractice?.time
 			? `${race.SecondPractice.date}T${race.SecondPractice.time}`
 			: undefined,
 	);
 	const thirdPractice = formatDateTime(
-		race.ThirdPractice
+		race.ThirdPractice?.date && race.ThirdPractice?.time
 			? `${race.ThirdPractice.date}T${race.ThirdPractice.time}`
 			: undefined,
 	);
 	const qualifying = formatDateTime(
-		race.Qualifying
+		race.Qualifying?.date && race.Qualifying?.time
 			? `${race.Qualifying.date}T${race.Qualifying.time}`
 			: undefined,
 	);
 	const sprintQualifying = formatDateTime(
-		race.SprintQualifying
+		race.SprintQualifying?.date && race.SprintQualifying?.time
 			? `${race.SprintQualifying.date}T${race.SprintQualifying.time}`
 			: undefined,
 	);
 	const sprint = formatDateTime(
-		race.Sprint ? `${race.Sprint.date}T${race.Sprint.time}` : undefined,
+		race.Sprint?.date && race.Sprint?.time
+			? `${race.Sprint.date}T${race.Sprint.time}`
+			: undefined,
 	);
 	const grandPrix = formatDateTime(
-		race ? `${race.date}T${race.time}` : undefined,
+		race?.date && race?.time ? `${race.date}T${race.time}` : undefined,
 	);
 
 	return {

@@ -12,5 +12,11 @@
 	"editor.formatOnSave": true,
 	"editor.codeActionsOnSave": {
 		"quickfix.biome": "explicit"
-	}
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
 }

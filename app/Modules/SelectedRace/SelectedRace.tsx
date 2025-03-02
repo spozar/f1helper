@@ -20,8 +20,6 @@ const SelectedRace = ({ race }: SelectedRaceProps) => {
 		sprintQualifyingTime,
 		sprintDate,
 		sprintTime,
-		grandPrixDate,
-		grandPrixTime,
 	} = dateAndTimeEvents(race);
 
 	const sessions = [
@@ -62,7 +60,7 @@ const SelectedRace = ({ race }: SelectedRaceProps) => {
 							session.date && (
 								<div
 									key={session.name}
-									className="flex text-sm justify-between w-full"
+									className="flex text-sm justify-between w-full pb-2 border-b border-gray-600"
 								>
 									<p>{session.name}</p>
 									<p className="flex gap-2 md:gap-4">

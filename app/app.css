@@ -3,9 +3,8 @@
 @theme {
 	--font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif,
 		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-	--font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-		"Liberation Mono", "Courier New", monospace;
-
+	--font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+		Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 html,
@@ -16,8 +15,6 @@ body {
 		color-scheme: dark;
 	}
 }
-
-
 
 .container {
 	margin-left: auto;

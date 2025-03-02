@@ -63,7 +63,7 @@ const Header = () => {
 
 					<LinkWithSearchParams to={"/standings"}>
 						<p
-							className={`font-semibold ${currentPath === "/standings" && "border-b border-b-white"}`}
+							className={`font-semibold ${currentPath === "/standings" ? "border-b border-b-white" : "opacity-75 hover:opacity-100"}`}
 						>
 							Standings
 						</p>

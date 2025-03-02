@@ -20,10 +20,6 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 
 	const [nextRace, setNextRace] = useState<string>("");
 
-	if (!raceList) {
-		return <>Something went wrong while fetching the Formula 1 data</>;
-	}
-
 	const handleClick = (raceRound: string) => {
 		if (selectedRace.includes(raceRound)) {
 			setSelectedRace([
@@ -36,12 +32,16 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 
 	useEffect(() => {
 		const currentDatePlusOneHour = addHours(new Date(), 1);
-		const nextRace = raceList.Races.find(
+		const nextRace = raceList?.Races.find(
 			(race) => currentDatePlusOneHour < new Date(`${race.date}T${race.time}`),
 		);
 
 		setNextRace(nextRace?.round || "");
-	}, [raceList]);
+	}, [raceList?.Races]);
+
+	if (!raceList) {
+		return <>Something went wrong while fetching the Formula 1 data</>;
+	}
 
 	return (
 		<div className="flex flex-col lg:w-[70%] mt-4">
@@ -63,7 +63,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 
 							<div className="flex flex-col w-full">
 								<div
-									className={`flex w-full p-2 md:p-3 ${nextRace === race.round && "text-amber-300"} ${hasRacePassed(race) && "line-through opacity-50"}`}
+									className={`font-semibold flex w-full p-2 md:p-3 ${nextRace === race.round && "text-amber-300"} ${hasRacePassed(race) && "line-through opacity-50"}`}
 									key={race.round}
 								>
 									<div className="relative w-full flex items-center gap-2">
