@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaFlagCheckered } from "react-icons/fa";
+
 import AnimateHeight from "react-animate-height";
 
 import SelectedRace from "~/Modules/SelectedRace/SelectedRace";
@@ -44,11 +44,8 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 	}
 
 	return (
-		<div className="container mx-auto px-4 py-6">
-			<h2 className="text-2xl font-bold mb-6 text-gray-100">
-				F1 Race Calendar
-			</h2>
-			<div className="bg-neutral-800 rounded-lg shadow-lg overflow-hidden">
+		<div className="mx-auto py-4">
+			<div className="bg-neutral-800 rounded-lg shadow-lg ">
 				{raceList.Races.map((race, index) => {
 					const isSelected = selectedRace.includes(race.round);
 					const isNextRace = nextRace === race.round;
@@ -63,7 +60,7 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 									type="button"
 									className={`w-full text-left transition-colors ${
 										isNextRace
-											? "bg-amber-900/30"
+											? "bg-red-600/50"
 											: index % 2 === 0
 												? "bg-neutral-900"
 												: "bg-neutral-800"
@@ -85,20 +82,13 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 											<h3 className="text-sm font-medium">
 												{race.raceName.replace("Grand Prix", "GP")}
 											</h3>
-											<p className="text-xs text-gray-400">
+											<p className="text-xs hidden md:block text-gray-400">
 												{race.Circuit.circuitName}
 											</p>
 										</div>
 
 										<div className="flex items-center space-x-3">
 											<RaceDateTime race={race} />
-
-											{isNextRace && (
-												<div className="bg-amber-300 text-black rounded px-2 py-0.5 flex items-center gap-1">
-													<span className="text-xs font-medium">Next</span>
-													<FaFlagCheckered size={12} />
-												</div>
-											)}
 
 											<div className="text-gray-400" />
 											{isSelected ? <Expanded /> : <NotExpanded />}
@@ -111,7 +101,11 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 									duration={300}
 									easing="ease-out"
 								>
-									<div className="bg-neutral-850 border-t border-neutral-700 px-4 py-3">
+									<div
+										className={`bg-neutral-850 border-t border-neutral-700 px-4 py-3 ${
+											index % 2 === 0 ? "bg-neutral-900" : "bg-neutral-800"
+										}`}
+									>
 										<SelectedRace race={race} />
 									</div>
 								</AnimateHeight>

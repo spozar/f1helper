@@ -39,7 +39,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 	return (
 		<Suspense fallback={<HomePageSkeleton />}>
 			<Await resolve={raceList}>
-				{(raceList) => <HomePage raceList={raceList} />}
+				{(raceList) => <HomePage2 raceList={raceList} />}
 			</Await>
 		</Suspense>
 	);
