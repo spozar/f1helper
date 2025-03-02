@@ -1,44 +1,43 @@
-import { NotExpanded } from "~/Components/SVGs/SVGs";
-
-const HomePageSkeleton = () => {
-	// Create an array to simulate races; adjust the length as needed
-	const skeletonArray = Array.from({ length: 10 });
+const RaceListSkeleton = () => {
+	const skeletonItems = Array.from({ length: 10 }, (_, index) => index);
 
 	return (
-		<div className="flex flex-col lg:w-[70%] mt-4">
-			{skeletonArray.map((_, index) => (
-				<div
-					// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-					key={index}
-					className={`${index % 2 === 0 ? "bg-neutral-900" : ""} flex gap-2`}
-				>
-					<div className="w-6 min-w-6 md:w-8 pt-2 md:pt-3 ml-2">
-						<div className="h-5 w-8 rounded bg-gray-700 animate-pulse" />
-					</div>
-
-					<div className="flex flex-col w-full">
-						<div className="flex w-full p-2 md:p-3">
-							<div className="relative w-full flex items-center gap-2">
-								<div className="h-5 w-24 md:w-36 rounded bg-gray-700 animate-pulse" />
-
-								<div className="opacity-70">
-									<NotExpanded />
+		<div className="mx-auto py-4">
+			<div className="bg-neutral-800 rounded-lg shadow-lg animate-pulse">
+				{skeletonItems.map((item, index) => (
+					<div
+						key={item}
+						className={`border-b border-neutral-700 ${index === skeletonItems.length - 1 && "border-b-0"}`}
+					>
+						<div
+							className={`w-full transition-colors ${
+								index % 2 === 0 ? "bg-neutral-900" : "bg-neutral-800"
+							}`}
+						>
+							<div className="flex items-center p-3 md:p-4">
+								{/* Flag placeholder */}
+								<div className="flex-shrink-0 w-8 h-6 mr-3 flex items-center justify-center">
+									<div className="bg-gray-600 rounded w-6 h-4" />
 								</div>
-							</div>
 
-							<div className="text-sm flex flex-wrap-reverse gap-2 md:gap-4 justify-end w-full">
-								{Math.random() > 0.8 && (
-									<div className="h-5 w-12 rounded bg-gray-700 animate-pulse" />
-								)}
+								{/* Race name and circuit */}
+								<div className="flex-grow">
+									<div className="h-4 bg-gray-600 rounded w-40 mb-2" />
+									<div className="h-3 bg-gray-700 rounded w-56 hidden md:block" />
+								</div>
 
-								<div className="h-5 w-20 md:w-24 rounded bg-gray-700 animate-pulse" />
+								{/* Date/time and expand icon */}
+								<div className="flex items-center space-x-3">
+									<div className="h-4 bg-gray-600 rounded w-16 md:w-24" />
+									<div className="h-4 w-4 bg-gray-600 rounded-full" />
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			))}
+				))}
+			</div>
 		</div>
 	);
 };
 
-export default HomePageSkeleton;
+export default RaceListSkeleton;

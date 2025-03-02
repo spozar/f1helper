@@ -1,6 +1,7 @@
 import { formatDateTime } from "~/Pages/HomePage/helpers";
 import { countryFlags } from "~/utils/constants/constants";
 import type { Race } from "~/utils/fetchers/raceList";
+import type { RaceResultAPI } from "~/utils/fetchers/results";
 
 export const dateAndTimeEvents = (race: Race) => {
 	const firstPractice = formatDateTime(
@@ -55,7 +56,7 @@ export const dateAndTimeEvents = (race: Race) => {
 	};
 };
 
-export const getCountryFlagUrl = (race: Race) => {
+export const getCountryFlagUrl = (race: Race | RaceResultAPI) => {
 	const country = race.Circuit.Location.country;
 	const flag = countryFlags.find((flag) => flag.name === country);
 

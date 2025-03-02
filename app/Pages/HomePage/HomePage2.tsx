@@ -55,12 +55,14 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 						<React.Fragment key={race.round}>
 							<div
 								className={`border-b border-neutral-700 ${index === raceList.Races.length - 1 && "border-b-0"}`}
+								onKeyDown={() => null}
+								onClick={() => handleClick(race.round)}
 							>
 								<button
 									type="button"
-									className={`w-full text-left transition-colors ${
+									className={`cursor-pointer w-full text-left transition-colors ${
 										isNextRace
-											? "bg-red-600/50"
+											? "bg-red-700/20"
 											: index % 2 === 0
 												? "bg-neutral-900"
 												: "bg-neutral-800"

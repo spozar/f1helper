@@ -13,13 +13,14 @@ interface StandingsProps {
 	constructorStandings: ConstructorStandingsTable | null;
 }
 
+type StandingsType = "drivers" | "constructors";
+
 const StandingsPage = ({
 	driverStandings,
 	constructorStandings,
 }: StandingsProps) => {
-	const [selectedStandings, setSelectedStandings] = useState<
-		"drivers" | "constructors"
-	>("drivers");
+	const [selectedStandings, setSelectedStandings] =
+		useState<StandingsType>("drivers");
 
 	const [searchParams, setSearchParams] = useSearchParams();
 
@@ -29,15 +30,25 @@ const StandingsPage = ({
 		return <p>Something went wrong while fetching standings</p>;
 	}
 
-	const highestPoints =
+	const highestPointsDriver =
 		driverStandings?.StandingsLists[0]?.DriverStandings[0]?.points || "0";
+
+	const highestPointsConstructor =
+		constructorStandings?.StandingsLists[0]?.ConstructorStandings[0]?.points ||
+		"0";
 
 	const driverStandingsList =
 		driverStandings?.StandingsLists[0]?.DriverStandings;
 
-	const percentageDifference = (points: string) => {
+	const percentageDifference = (points: string, standings: StandingsType) => {
 		const percentage =
-			(Number.parseInt(points) / Number.parseInt(highestPoints)) * 100;
+			(Number.parseInt(points) /
+				Number.parseInt(
+					standings === "drivers"
+						? highestPointsDriver
+						: highestPointsConstructor,
+				)) *
+			100;
 
 		return percentage;
 	};
@@ -141,7 +152,7 @@ const StandingsPage = ({
 												"#CCCCCC",
 										}}
 										animate={{
-											width: `${percentageDifference(driver.points)}%`,
+											width: `${percentageDifference(driver.points, "drivers")}%`,
 											transition: {
 												duration: 2,
 											},
@@ -181,7 +192,7 @@ const StandingsPage = ({
 													"#CCCCCC",
 											}}
 											animate={{
-												width: `${percentageDifference(constructor.points)}%`,
+												width: `${percentageDifference(constructor.points, "constructors")}%`,
 												transition: {
 													duration: 2,
 												},

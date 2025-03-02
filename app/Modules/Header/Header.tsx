@@ -59,6 +59,18 @@ const Header = () => {
 									Standings
 								</p>
 							</LinkWithSearchParams>
+
+							<LinkWithSearchParams to={"/results"}>
+								<p
+									className={`font-medium transition-colors ${
+										currentPath === "/results"
+											? "text-white border-b-2 border-red-600"
+											: "text-gray-400 hover:text-white"
+									}`}
+								>
+									Results
+								</p>
+							</LinkWithSearchParams>
 						</nav>
 
 						{/* Season selector */}
