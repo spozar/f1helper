@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AnimateHeight from "react-animate-height";
+import { FaArrowLeft } from "react-icons/fa";
+import { useSearchParams } from "react-router";
 import { Expanded, NotExpanded } from "~/Components/SVGs/SVGs";
 import { getCountryFlagUrl } from "~/Modules/SelectedRace/helpers";
 import type { RaceTableResultAPI } from "~/utils/fetchers/results";
@@ -19,10 +21,33 @@ const ResultsPage = ({ results }: ResultsPageProps) => {
 		}
 	};
 
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	const currentSeason = searchParams.get("year") || new Date().getFullYear();
+
 	if (results === null) {
 		return (
 			<div className="flex justify-center items-center p-8 text-red-400">
 				Something went wrong while fetching the Formula 1 data
+			</div>
+		);
+	}
+
+	if (results?.Races.length === 0) {
+		return (
+			<div className="mt-16">
+				<p>
+					No results available for the {currentSeason} season. Please select
+					another season.
+				</p>
+				<button
+					type="button"
+					onClick={() => setSearchParams({ year: `${+currentSeason - 1}` })}
+					className="flex items-center gap-2 mt-4 cursor-pointer"
+				>
+					<FaArrowLeft />
+					Go to previous season
+				</button>
 			</div>
 		);
 	}
