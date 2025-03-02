@@ -4,6 +4,7 @@ import type { Route } from "./+types/home";
 import { Await, useNavigation, type LoaderFunctionArgs } from "react-router";
 import { Suspense } from "react";
 import HomePageSkeleton from "~/Pages/HomePage/HomePageSkeleton";
+import HomePage2 from "~/Pages/HomePage/HomePage2";
 
 export function headers(_: Route.HeadersArgs) {
 	return {

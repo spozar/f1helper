@@ -63,7 +63,7 @@ export const HomePage = ({ raceList }: WelcomeProps) => {
 
 							<div className="flex flex-col w-full">
 								<div
-									className={`font-semibold flex w-full p-2 md:p-3 ${nextRace === race.round && "text-amber-300"} ${hasRacePassed(race) && "line-through opacity-50"}`}
+									className={` flex w-full p-2 md:p-3 ${nextRace === race.round && "text-amber-300"} ${hasRacePassed(race) && "line-through opacity-50"}`}
 									key={race.round}
 								>
 									<div className="relative w-full flex items-center gap-2">
