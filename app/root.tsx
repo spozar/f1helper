@@ -17,7 +17,6 @@ import Header from "./Modules/Header/Header";
 import Footer from "./Modules/Footer/Footer";
 
 export const links: Route.LinksFunction = () => [
-	{ rel: "canonical", href: "https://f1helper.com" },
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
 	{
 		rel: "preconnect",

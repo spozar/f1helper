@@ -1,5 +1,4 @@
 import { fetchRaceList } from "~/utils/fetchers/raceList";
-import { HomePage } from "../Pages/HomePage/HomePage";
 import type { Route } from "./+types/home";
 import { Await, useNavigation, type LoaderFunctionArgs } from "react-router";
 import { Suspense } from "react";
@@ -12,6 +11,10 @@ export function headers(_: Route.HeadersArgs) {
 		"Cache-Control": "public, max-age=3600, s-maxage=3600",
 	};
 }
+
+export const links: Route.LinksFunction = () => [
+	{ rel: "canonical", href: "https://f1helper.com/standings" },
+];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const url = new URL(request.url);
