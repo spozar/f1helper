@@ -9,7 +9,7 @@ import { Expanded, NotExpanded } from "~/Components/SVGs/SVGs";
 import { addHours } from "date-fns";
 import { hasRacePassed } from "~/utils/helpers/general";
 import RaceDateTime from "./Components/RaceDateTime";
-import WeatherInfo from "~/Modules/WeatherInfo/WeatherInfo";
+import { useSearchParams } from "react-router";
 
 interface HomePageProps {
 	raceList: RaceTable | null;
@@ -18,6 +18,10 @@ interface HomePageProps {
 export const HomePage2 = ({ raceList }: HomePageProps) => {
 	const [selectedRace, setSelectedRace] = useState<string[]>([]);
 	const [nextRace, setNextRace] = useState<string>("");
+
+	const [searchParams] = useSearchParams();
+
+	const year = searchParams.get("year") || new Date().getFullYear().toString();
 
 	const handleClick = (raceRound: string) => {
 		if (selectedRace.includes(raceRound)) {
@@ -45,8 +49,25 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 	}
 
 	return (
-		<div className="mx-auto mt-16">
-			<div className="bg-neutral-800 rounded-lg shadow-lg ">
+		<div className="mx-auto mt-8">
+			<div className="mb-4">
+				<div className="flex items-center gap-3">
+					<h2 className="text-xl font-semibold text-white">
+						Formula 1 Race Calendar
+					</h2>
+					<div className="bg-red-700 text-white text-xs px-3 py-0.5 rounded-full">
+						{year} Season
+					</div>
+				</div>
+				<p className="text-gray-400 text-sm mt-1">
+					Event schedule and timing information for all Grand Prix weekends
+				</p>
+				<div className="mt-2 flex items-center gap-2 bg-yellow-400/20 text-yellow-300 text-xs px-2 py-0.5 rounded w-fit">
+					<span className="inline-block mr-1">ⓘ</span> Weather forecasts
+					available 10 days before race weekend
+				</div>
+			</div>
+			<div className="bg-neutral-800 rounded-lg shadow-lg mt-4">
 				{raceList.Races.map((race, index) => {
 					const isSelected = selectedRace.includes(race.round);
 					const isNextRace = nextRace === race.round;

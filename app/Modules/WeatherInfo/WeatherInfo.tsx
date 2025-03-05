@@ -63,10 +63,11 @@ const WeatherInfo = ({ race }: WeatherInfoProps) => {
 	const weatherData = weatherFetcher.data;
 	const hasError = weatherData?.error;
 
-	const exactTimeSeries =
-		weatherData?.properties.timeseries.find((timeSeries) => {
+	const exactTimeSeries = weatherData?.properties.timeseries.find(
+		(timeSeries) => {
 			timeSeries.time === `${race.date}T${race.time}`;
-		}) || weatherData?.properties.timeseries[0];
+		},
+	);
 
 	const hasValidWeatherIcon =
 		exactTimeSeries?.data.next_1_hours || exactTimeSeries?.data.next_6_hours;
@@ -89,9 +90,9 @@ const WeatherInfo = ({ race }: WeatherInfoProps) => {
 			) : hasError ? (
 				<p>Error loading weather data: {weatherData.error}</p>
 			) : (
-				<div className="flex flex-col">
+				<div className="flex flex-col h-full gap-2">
 					<p className="text-sm pl-1">Forecast</p>
-					<div className="flex items-center gap-2">
+					<div className="flex justify-between items-center gap-2">
 						{hasValidWeatherIcon ? (
 							<img src={getWeatherIcon()} className="w-10" alt="Weather" />
 						) : (
