@@ -4,7 +4,7 @@ import {
 	fetchDriverStandings,
 } from "~/utils/fetchers/standings";
 import StandingsPage from "~/Pages/Standings/StandingsPage";
-import { Await, useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { Await, type LoaderFunctionArgs } from "react-router";
 import { Suspense } from "react";
 import GiantLoader from "~/Components/GiantLoader/GiantLoader";
 
@@ -49,12 +49,16 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
 	return (
 		<Suspense fallback={<GiantLoader />}>
-			<Await resolve={Promise.all([driverStandings, constructorStandings])}>
-				{([driverStandings, constructorStandings]) => (
-					<StandingsPage
-						driverStandings={driverStandings}
-						constructorStandings={constructorStandings}
-					/>
+			<Await resolve={driverStandings}>
+				{(resolvedDriverStandings) => (
+					<Await resolve={constructorStandings}>
+						{(resolvedConstructorStandings) => (
+							<StandingsPage
+								driverStandings={resolvedDriverStandings}
+								constructorStandings={resolvedConstructorStandings}
+							/>
+						)}
+					</Await>
 				)}
 			</Await>
 		</Suspense>
