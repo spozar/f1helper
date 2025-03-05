@@ -9,6 +9,7 @@ import { Expanded, NotExpanded } from "~/Components/SVGs/SVGs";
 import { addHours } from "date-fns";
 import { hasRacePassed } from "~/utils/helpers/general";
 import RaceDateTime from "./Components/RaceDateTime";
+import WeatherInfo from "~/Modules/WeatherInfo/WeatherInfo";
 
 interface HomePageProps {
 	raceList: RaceTable | null;
@@ -44,7 +45,7 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 	}
 
 	return (
-		<div className="mx-auto py-4">
+		<div className="mx-auto mt-16">
 			<div className="bg-neutral-800 rounded-lg shadow-lg ">
 				{raceList.Races.map((race, index) => {
 					const isSelected = selectedRace.includes(race.round);
@@ -62,10 +63,10 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 									type="button"
 									className={`cursor-pointer w-full text-left transition-colors ${
 										isNextRace
-											? "bg-red-700/20"
+											? "bg-gradient-to-l from-neutral-900 to-yellow-300/30"
 											: index % 2 === 0
 												? "bg-neutral-900"
-												: "bg-neutral-800"
+												: " bg-neutral-800 "
 									} hover:bg-neutral-700`}
 									onClick={() => handleClick(race.round)}
 								>
@@ -84,7 +85,9 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 											<h3 className="text-sm font-medium">
 												{race.raceName.replace("Grand Prix", "GP")}
 											</h3>
-											<p className="text-xs hidden md:block text-gray-400">
+											<p
+												className={`text-xs hidden md:block ${isNextRace ? "text-white" : "text-gray-400"}`}
+											>
 												{race.Circuit.circuitName}
 											</p>
 										</div>

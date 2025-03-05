@@ -22,7 +22,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const year =
 		url.searchParams.get("year") || new Date().getFullYear().toString();
 
-	const raceList = await fetchRaceList(year);
+	const raceList = fetchRaceList(year);
 
 	return {
 		raceList,

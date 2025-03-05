@@ -35,7 +35,7 @@ const ResultsPage = ({ results }: ResultsPageProps) => {
 
 	if (results?.Races.length === 0) {
 		return (
-			<div className="mt-16">
+			<div className="mt-8">
 				<p>
 					No results available for the {currentSeason} season. Please select
 					another season.
@@ -52,7 +52,7 @@ const ResultsPage = ({ results }: ResultsPageProps) => {
 		);
 	}
 	return (
-		<div className="mx-auto py-4">
+		<div className="mx-auto mt-16">
 			<div className="bg-neutral-800 rounded-lg shadow-lg">
 				{results.Races.map((race, index) => {
 					const raceId = race.round;

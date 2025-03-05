@@ -4,7 +4,9 @@ import {
 	fetchDriverStandings,
 } from "~/utils/fetchers/standings";
 import StandingsPage from "~/Pages/Standings/StandingsPage";
-import type { LoaderFunctionArgs } from "react-router";
+import { Await, useLoaderData, type LoaderFunctionArgs } from "react-router";
+import { Suspense } from "react";
+import GiantLoader from "~/Components/GiantLoader/GiantLoader";
 
 export function headers(_: Route.HeadersArgs) {
 	return {
@@ -33,10 +35,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const year =
 		url.searchParams.get("year") || new Date().getFullYear().toString();
 
-	const [driverStandings, constructorStandings] = await Promise.all([
-		fetchDriverStandings(year),
-		fetchConstructorStandings(year),
-	]);
+	const driverStandings = fetchDriverStandings(year);
+	const constructorStandings = fetchConstructorStandings(year);
 
 	return {
 		driverStandings,
@@ -48,9 +48,15 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 	const { driverStandings, constructorStandings } = loaderData;
 
 	return (
-		<StandingsPage
-			driverStandings={driverStandings}
-			constructorStandings={constructorStandings}
-		/>
+		<Suspense fallback={<GiantLoader />}>
+			<Await resolve={Promise.all([driverStandings, constructorStandings])}>
+				{([driverStandings, constructorStandings]) => (
+					<StandingsPage
+						driverStandings={driverStandings}
+						constructorStandings={constructorStandings}
+					/>
+				)}
+			</Await>
+		</Suspense>
 	);
 }

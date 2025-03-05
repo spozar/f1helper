@@ -1,9 +1,10 @@
 import HomePageSkeleton from "~/Pages/HomePage/HomePageSkeleton";
 import type { Route } from "./+types/results";
 
-import { useNavigation, type LoaderFunctionArgs } from "react-router";
+import { Await, useNavigation, type LoaderFunctionArgs } from "react-router";
 import ResultsPage from "~/Pages/Results/ResultsPage";
 import resultsFetcher from "~/utils/fetchers/results";
+import { Suspense } from "react";
 
 export function headers(_: Route.HeadersArgs) {
 	return {
@@ -33,7 +34,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const year =
 		url.searchParams.get("year") || new Date().getFullYear().toString();
 
-	const results = await resultsFetcher(year);
+	const results = resultsFetcher(year);
 
 	return {
 		results,
@@ -50,5 +51,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 		return <HomePageSkeleton />;
 	}
 
-	return <ResultsPage results={results} />;
+	return (
+		<Suspense fallback={<HomePageSkeleton />}>
+			<Await resolve={results}>
+				{(results) => <ResultsPage results={results} />}
+			</Await>
+		</Suspense>
+	);
 }

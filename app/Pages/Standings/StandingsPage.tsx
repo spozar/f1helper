@@ -73,7 +73,7 @@ const StandingsPage = ({
 		constructorStandings?.StandingsLists.length === 0
 	) {
 		return (
-			<div className="mt-16">
+			<div className="mt-8">
 				<p>
 					No standings available for the {currentSeason} season. Please select
 					another season.
@@ -91,7 +91,7 @@ const StandingsPage = ({
 	}
 
 	return (
-		<div className="mt-8">
+		<div className="mt-16">
 			<div className="mb-6">
 				<div className="flex md:hidden bg-neutral-900 rounded-md overflow-hidden border border-zinc-800 shadow-inner relative">
 					<motion.div

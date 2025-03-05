@@ -1,6 +1,7 @@
 import type { Race } from "~/utils/fetchers/raceList";
 import { dateAndTimeEvents } from "./helpers";
 import { Countdown } from "~/Components/Countdown/Countdown";
+import WeatherInfo from "../WeatherInfo/WeatherInfo";
 
 interface SelectedRaceProps {
 	race: Race;
@@ -51,8 +52,13 @@ const SelectedRace = ({ race }: SelectedRaceProps) => {
 		<div className="cursor-pointer px-2 md:px-3">
 			<div className="flex flex-col gap-4">
 				<div className="flex flex-col">
-					<h4 className="self-start">Starts in:</h4>
-					<Countdown date={race.date} time={race.time} />
+					<div className="flex gap-8">
+						<div>
+							<h4 className="self-start">Starts in:</h4>
+							<Countdown date={race.date} time={race.time} />
+						</div>
+						<WeatherInfo race={race} />
+					</div>
 				</div>
 				<div className="flex flex-col gap-2 items-end">
 					{sessions.map(

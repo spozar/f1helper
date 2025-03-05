@@ -2,7 +2,7 @@ const RaceListSkeleton = () => {
 	const skeletonItems = Array.from({ length: 10 }, (_, index) => index);
 
 	return (
-		<div className="mx-auto py-4">
+		<div className="mx-auto mt-16">
 			<div className="bg-neutral-800 rounded-lg shadow-lg animate-pulse">
 				{skeletonItems.map((item, index) => (
 					<div

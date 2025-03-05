@@ -60,7 +60,7 @@ export const Countdown = ({ date, time }: CountDownProps) => {
 	const formattedSeconds = String(seconds).padStart(2, "0");
 
 	return (
-		<div className="font-mono font-medium flex gap-4">
+		<div className="font-medium flex gap-4">
 			<div className="flex flex-col">
 				<p className="font-mono font-medium">{days}</p>
 				<p className="text-xs">days</p>
