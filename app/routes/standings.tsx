@@ -4,7 +4,7 @@ import {
 	fetchDriverStandings,
 } from "~/utils/fetchers/standings";
 import StandingsPage from "~/Pages/Standings/StandingsPage";
-import { Await, type LoaderFunctionArgs } from "react-router";
+import { Await, type LoaderFunctionArgs, type MetaArgs } from "react-router";
 import { Suspense } from "react";
 import GiantLoader from "~/Components/GiantLoader/GiantLoader";
 
@@ -19,12 +19,39 @@ export const links: Route.LinksFunction = () => [
 	{ rel: "canonical", href: "https://f1helper.com/standings" },
 ];
 
-export function meta() {
+export function meta({ data }: Route.MetaArgs) {
+	const year = data?.year || new Date().getFullYear();
+
 	return [
-		{ title: "Standings | F1 Helper" },
+		{ title: `${year} F1 Driver and Constructor Standings | F1 Helper` },
 		{
 			name: "description",
-			content: "Standings for drivers and constructors in the F1 season",
+			content: `Complete Formula 1 ${year} season standings for drivers and constructors. Track championship points, race positions, and team performances throughout the F1 season.`,
+		},
+
+		{
+			property: "og:title",
+			content: `${year} F1 Standings | Drivers & Constructors`,
+		},
+		{
+			property: "og:description",
+			content: `Complete Formula 1 ${year} season standings for drivers and constructors. Track championship points and performance.`,
+		},
+		{
+			property: "og:image",
+			content: "https://f1helper.com/og-image-standings.jpg",
+		},
+		{
+			property: "og:url",
+			content: `https://f1helper.com/standings?year=${year}`,
+		},
+		{ property: "og:type", content: "website" },
+
+		{ name: "twitter:card", content: "summary_large_image" },
+
+		{
+			name: "keywords",
+			content: `Formula 1, F1 Standings, ${year} F1, F1 Championship, F1 Points, Constructor Standings, Driver Championship`,
 		},
 	];
 }
@@ -54,6 +81,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 		driverStandings,
 		constructorStandings,
 		showPreviousYear,
+		year,
 	};
 };
 

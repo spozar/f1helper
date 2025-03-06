@@ -17,13 +17,53 @@ export const links: Route.LinksFunction = () => [
 	{ rel: "canonical", href: "https://f1helper.com/results" },
 ];
 
-export function meta() {
+export function meta({ data }: Route.MetaArgs) {
+	const year = data?.year || new Date().getFullYear().toString();
+	const showPreviousYear = data?.showPreviousYear;
+	const displayYear = showPreviousYear ? "2024" : year;
+
 	return [
-		{ title: "Results | F1 Helper" },
+		{ title: `${displayYear} Formula 1 Race Results | F1 Helper` },
 		{
 			name: "description",
-			content:
-				"Race results for the F1 season - Drivers, constructors and fastest LAP",
+			content: `Complete ${displayYear} Formula 1 race results including qualifying, race positions, fastest laps, and points for every Grand Prix of the F1 season.`,
+		},
+		// Open Graph tags
+		{
+			property: "og:title",
+			content: `${displayYear} F1 Race Results | Grand Prix Outcomes`,
+		},
+		{
+			property: "og:description",
+			content: `Complete ${displayYear} Formula 1 race results for all Grand Prix events. View positions, lap times, and race outcomes for each F1 event.`,
+		},
+		{
+			property: "og:image",
+			content: "https://f1helper.com/og-image-results.jpg",
+		},
+		{
+			property: "og:url",
+			content: `https://f1helper.com/results?year=${displayYear}`,
+		},
+		{ property: "og:type", content: "website" },
+		// Twitter Card tags
+		{ name: "twitter:card", content: "summary_large_image" },
+		{
+			name: "twitter:title",
+			content: `${displayYear} Formula 1 Race Results | F1 Helper`,
+		},
+		{
+			name: "twitter:description",
+			content: `Complete ${displayYear} Formula 1 race results for all Grand Prix events.`,
+		},
+		{
+			name: "twitter:image",
+			content: "https://f1helper.com/og-image-results.jpg",
+		},
+		// Keywords
+		{
+			name: "keywords",
+			content: `F1 Results, Formula 1 Results, ${displayYear} F1, Grand Prix Results, F1 Race Outcomes, F1 Qualifying Results, F1 Fastest Lap`,
 		},
 	];
 }
@@ -52,6 +92,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 	return {
 		results,
 		showPreviousYear,
+		year,
 	};
 };
 

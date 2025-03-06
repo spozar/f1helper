@@ -69,11 +69,10 @@ const WeatherInfo = ({ race }: WeatherInfoProps) => {
 		}) ||
 		weatherData?.properties?.timeseries
 			?.filter((timeSeries) => {
-				// Extract just the time part from the timestamp
 				const timeFromTimeseries = timeSeries.time.split("T")[1];
 				return timeFromTimeseries === race.time;
 			})
-			.pop(); // Get the last entry that matches the time
+			.pop();
 
 	const hasValidWeatherIcon =
 		exactTimeSeries?.data.next_1_hours || exactTimeSeries?.data.next_6_hours;

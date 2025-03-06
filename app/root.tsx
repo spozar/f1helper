@@ -33,15 +33,21 @@ export const links: Route.LinksFunction = () => [
 	},
 ];
 
-export function meta() {
-	return [
-		{ title: "F1 Helper | Schedule and stats" },
-		{
-			name: "description",
-			content: "F1 Helper brings you schedule and stats for the F1 seasons",
-		},
-	];
-}
+const schemaMarkup = {
+	"@context": "https://schema.org",
+	"@type": "SportsOrganization",
+	name: "F1 Helper",
+	url: "https://f1helper.com",
+	logo: "https://f1helper.com/logo.png",
+	sameAs: [
+		"https://github.com/spozar",
+		"https://www.linkedin.com/in/sandro-pozar/",
+	],
+	potentialAction: {
+		"@type": "ViewAction",
+		target: "https://f1helper.com/standings",
+	},
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
@@ -50,10 +56,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<Meta />
-				{/* <script
-					crossOrigin="anonymous"
-					src="//unpkg.com/react-scan/dist/auto.global.js"
-				/> */}
+				<script
+					type="application/ld+json"
+					// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+					dangerouslySetInnerHTML={{
+						__html: JSON.stringify(schemaMarkup),
+					}}
+				/>
+
 				<script
 					data-name="BMC-Widget"
 					data-cfasync="false"

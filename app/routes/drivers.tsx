@@ -17,7 +17,7 @@ export const links: Route.LinksFunction = () => [
 
 export function meta() {
 	return [
-		{ title: "Drivers | F1 Helper" },
+		{ title: "Formula 1 Drivers | F1 Helper" },
 		{
 			name: "description",
 			content:

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import AnimateHeight from "react-animate-height";
 
 import SelectedRace from "~/Modules/SelectedRace/SelectedRace";
-import type { RaceTable } from "~/utils/fetchers/raceList";
+import type { Race, RaceTable } from "~/utils/fetchers/raceList";
 import { getCountryFlagUrl } from "~/Modules/SelectedRace/helpers";
 import { Expanded, NotExpanded } from "~/Components/SVGs/SVGs";
 import { addHours } from "date-fns";
@@ -14,6 +14,28 @@ import { useSearchParams } from "react-router";
 interface HomePageProps {
 	raceList: RaceTable | null;
 }
+
+const generateRaceSchema = (race: Race) => {
+	return {
+		"@context": "https://schema.org",
+		"@type": "SportsEvent",
+		name: race.raceName,
+		startDate: `${race.date}T${race.time}`,
+		location: {
+			"@type": "Place",
+			name: race.Circuit.circuitName,
+			address: {
+				"@type": "PostalAddress",
+				addressLocality: race.Circuit.Location.locality,
+				addressCountry: race.Circuit.Location.country,
+			},
+		},
+		organizer: {
+			"@type": "Organization",
+			name: "Formula 1",
+		},
+	};
+};
 
 export const HomePage2 = ({ raceList }: HomePageProps) => {
 	const [selectedRace, setSelectedRace] = useState<string[]>([]);
@@ -80,6 +102,13 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 								onKeyDown={() => null}
 								onClick={() => handleClick(race.round)}
 							>
+								<script
+									type="application/ld+json"
+									// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
+									dangerouslySetInnerHTML={{
+										__html: JSON.stringify(generateRaceSchema(race)),
+									}}
+								/>
 								<button
 									type="button"
 									className={`cursor-pointer w-full text-left transition-colors ${
@@ -96,7 +125,10 @@ export const HomePage2 = ({ raceList }: HomePageProps) => {
 											<img
 												src={getCountryFlagUrl(race)}
 												className="max-h-5 max-w-full rounded shadow-sm"
-												alt={`${race.Circuit.Location.country} flag`}
+												alt={`${race.Circuit.Location.country} flag - ${race.raceName}`}
+												loading="lazy"
+												width="32"
+												height="20"
 											/>
 										</div>
 

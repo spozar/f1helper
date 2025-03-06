@@ -13,11 +13,11 @@ export function headers(_: Route.HeadersArgs) {
 
 export function meta({ data }: Route.MetaArgs) {
 	return [
-		{ title: `Driver results | ${data.driverId} | F1 Helper` },
+		{ title: `F1 Driver Result | ${data.driverId} | F1 Helper` },
 		{
 			name: "description",
 			content:
-				"Race results for the F1 season - Drivers, constructors and fastest LAP",
+				"Race results for the Formula 1 season - Drivers, constructors and fastest LAP",
 		},
 	];
 }
