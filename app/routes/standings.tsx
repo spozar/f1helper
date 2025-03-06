@@ -32,8 +32,17 @@ export function meta() {
 export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const url = new URL(request.url);
 
-	const year =
-		url.searchParams.get("year") || new Date().getFullYear().toString();
+	const currentDate = new Date();
+	const march18Current = new Date(currentDate.getFullYear(), 2, 18); // Month is 0-indexed, so 2 = March
+
+	let year = "";
+	if (url.searchParams.get("year")) {
+		year = url.searchParams.get("year") as string;
+	} else if (currentDate > march18Current) {
+		year = currentDate.getFullYear().toString();
+	} else {
+		year = "2024";
+	}
 
 	const driverStandings = fetchDriverStandings(year);
 	const constructorStandings = fetchConstructorStandings(year);

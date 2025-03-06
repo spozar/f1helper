@@ -1,11 +1,14 @@
 import { Link, useLocation, useSearchParams } from "react-router";
 import LinkWithSearchParams from "~/Components/LinkWithSearchParams/LinkWithSearchParams";
 import { Expanded } from "~/Components/SVGs/SVGs";
+import { useEffect, useState } from "react";
 
 const Header = () => {
 	const location = useLocation();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const currentPath = location.pathname;
+
+	const [timeZone, setTimeZone] = useState<string>();
 
 	const handleYearChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 		setSearchParams({ year: e.target.value });
@@ -15,7 +18,6 @@ const Header = () => {
 		<header className="sticky top-0 z-50 bg-neutral-950 shadow-md border-b border-neutral-800">
 			<div className=" mx-auto">
 				<div className="flex flex-col md:flex-row py-3 items-center justify-between">
-					{/* Logo section */}
 					<div className="flex items-center">
 						<Link
 							to={"/"}

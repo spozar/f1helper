@@ -13,7 +13,7 @@ export function headers(_: Route.HeadersArgs) {
 }
 
 export const links: Route.LinksFunction = () => [
-	{ rel: "canonical", href: "https://f1helper.com/standings" },
+	{ rel: "canonical", href: "https://f1helper.com" },
 ];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {

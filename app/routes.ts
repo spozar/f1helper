@@ -5,4 +5,6 @@ export default [
 	route("standings", "routes/standings.tsx"),
 	route("results", "routes/results.tsx"),
 	route("api/weather", "routes/api/api.weather.tsx"),
+	route("drivers", "routes/drivers.tsx"),
+	route("drivers/:driverId", "routes/driverResults.tsx"),
 ] satisfies RouteConfig;

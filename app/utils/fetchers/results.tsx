@@ -107,10 +107,8 @@ const resultsFetcher = async (
 			}
 			const data = await response.json();
 
-			// Extract the race table from the API response.
 			const raceTable: RaceTableResultAPI = data.MRData.RaceTable;
 
-			// Set total on first fetch.
 			if (total === 0) {
 				total = Number.parseInt(data.MRData.total, 10);
 			}
@@ -119,7 +117,6 @@ const resultsFetcher = async (
 			offset += limit;
 		} while (offset < total);
 
-		// Deduplicate the races if duplicates are present.
 		const uniqueRaces = deduplicateRaces(combinedRaces);
 		const season = uniqueRaces.length > 0 ? uniqueRaces[0].season : year;
 
