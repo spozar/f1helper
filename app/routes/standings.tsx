@@ -35,6 +35,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const currentDate = new Date();
 	const march18Current = new Date(currentDate.getFullYear(), 2, 18); // Month is 0-indexed, so 2 = March
 
+	let showPreviousYear = false;
+
 	let year = "";
 	if (url.searchParams.get("year")) {
 		year = url.searchParams.get("year") as string;
@@ -42,6 +44,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 		year = currentDate.getFullYear().toString();
 	} else {
 		year = "2024";
+		showPreviousYear = true;
 	}
 
 	const driverStandings = fetchDriverStandings(year);
@@ -50,11 +53,13 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 	return {
 		driverStandings,
 		constructorStandings,
+		showPreviousYear,
 	};
 };
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-	const { driverStandings, constructorStandings } = loaderData;
+	const { driverStandings, constructorStandings, showPreviousYear } =
+		loaderData;
 
 	return (
 		<Suspense fallback={<GiantLoader />}>
@@ -62,10 +67,24 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 				{(resolvedDriverStandings) => (
 					<Await resolve={constructorStandings}>
 						{(resolvedConstructorStandings) => (
-							<StandingsPage
-								driverStandings={resolvedDriverStandings}
-								constructorStandings={resolvedConstructorStandings}
-							/>
+							<>
+								{showPreviousYear && (
+									<div className="w-full p-4 mb-6 bg-gray-800 border-l-4 border-amber-500 rounded-md shadow-sm mt-2">
+										<h3 className="text-xl font-medium text-amber-300">
+											<span className="mr-2">⚠️</span>
+											Displaying previous season's standings
+										</h3>
+										<p className="mt-1 text-amber-200">
+											The current Formula 1 season has not officially begun yet.
+											Data shown is from the previous season.
+										</p>
+									</div>
+								)}
+								<StandingsPage
+									driverStandings={resolvedDriverStandings}
+									constructorStandings={resolvedConstructorStandings}
+								/>
+							</>
 						)}
 					</Await>
 				)}
