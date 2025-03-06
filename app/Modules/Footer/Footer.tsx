@@ -5,12 +5,18 @@ const Footer = () => {
 		<div className="flex mt-12 mb-8">
 			<div className="flex flex-col gap-1">
 				<div className="flex gap-2">
-					<a href="https://github.com/spozar" target="_blank" rel="noreferrer">
+					<a
+						href="https://github.com/spozar"
+						aria-label="Go to Sandro Pozar's Github Page"
+						target="_blank"
+						rel="noreferrer"
+					>
 						<FaGithub size={25} />
 					</a>
 					<a
 						href="https://www.linkedin.com/in/sandro-pozar/"
 						target="_blank"
+						aria-label="Go to Sandro Pozar's LinkedIn Page"
 						rel="noreferrer"
 					>
 						<FaLinkedin size={25} />

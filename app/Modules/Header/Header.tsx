@@ -77,9 +77,13 @@ const Header = () => {
 
 						{/* Season selector */}
 						<div className="flex items-center gap-2 bg-neutral-800 px-3 py-1 rounded">
-							<p className="text-sm text-gray-400">Season:</p>
+							<label htmlFor="seasonSelector" className="text-sm text-gray-400">
+								Season:
+							</label>
 							<div className="relative">
 								<select
+									aria-label="Select season"
+									id="seasonSelector"
 									className="appearance-none bg-transparent text-white pr-6 cursor-pointer"
 									value={searchParams.get("year") || "2025"}
 									onChange={handleYearChange}
