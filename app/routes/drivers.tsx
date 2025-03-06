@@ -54,5 +54,9 @@ export const loader = async ({ params, request }: LoaderFunctionArgs) => {
 export default function Home({ loaderData }: Route.ComponentProps) {
 	const { drivers } = loaderData;
 
-	return <></>;
+	return (
+		<>
+			<div></div>
+		</>
+	);
 }

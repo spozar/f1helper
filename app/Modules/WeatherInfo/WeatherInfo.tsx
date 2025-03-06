@@ -63,7 +63,7 @@ const WeatherInfo = ({ race }: WeatherInfoProps) => {
 	const weatherData = weatherFetcher.data;
 	const hasError = weatherData?.error;
 
-	const exactTimeSeries = weatherData?.properties.timeseries?.find(
+	const exactTimeSeries = weatherData?.properties?.timeseries?.find(
 		(timeSeries) => {
 			timeSeries.time === `${race.date}T${race.time}`;
 		},

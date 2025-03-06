@@ -10,7 +10,9 @@ export type DriversApIResponse = {
 };
 
 const fetchDrivers = async (year: string) => {
-	const response = await fetch(`https://ergast.com/api/f1/${year}/drivers/`);
+	const response = await fetch(
+		`https://api.jolpi.ca/ergast/f1/${year}/drivers/`,
+	);
 	const data = await response.json();
 
 	const results: DriversApIResponse = data.MRData.DriverTable.Drivers;

@@ -66,7 +66,7 @@ export type DriverResultsApiResponse = {
 
 const fetchDriverResults = async (driverId: string, year: string) => {
 	const response = await fetch(
-		`https://ergast.com/api/f1/${year}/drivers/${driverId}/results.json`,
+		`https://api.jolpi.ca/ergast/f1/${year}/drivers/${driverId}/results.json`,
 	);
 	const data = await response.json();
 
