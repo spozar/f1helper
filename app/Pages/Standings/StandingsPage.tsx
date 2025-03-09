@@ -2,11 +2,13 @@ import { motion } from "motion/react";
 import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useSearchParams } from "react-router";
+import { constructorColors } from "~/utils/constants/constants";
 
 import type {
 	ConstructorStandingsTable,
 	DriverStandingsTable,
 } from "~/utils/fetchers/standings";
+import { convertCounstrctorIdToName } from "~/utils/helpers/general";
 
 interface StandingsProps {
 	driverStandings: DriverStandingsTable | null;
@@ -51,21 +53,6 @@ const StandingsPage = ({
 			100;
 
 		return percentage;
-	};
-
-	const constructorColors: Record<string, string> = {
-		Mercedes: "#00A19B",
-		"Red Bull": "#0600EF",
-		Ferrari: "#DC0000",
-		McLaren: "#FF8700",
-		"Aston Martin": "#006F62",
-		"Alpine F1 Team": "#0090FF",
-		Williams: "#005AFF",
-		"RB F1 Team": "#00293F",
-		AlphaTauri: "#00293F",
-		"Kick Sauber": "#900000",
-		"Alfa Romeo": "#900000",
-		"Haas F1 Team": "#FFFFFF",
 	};
 
 	if (
@@ -140,7 +127,7 @@ const StandingsPage = ({
 										<p>{driver.Driver.givenName}</p>
 										<p className="font-semibold">{driver.Driver.familyName}</p>
 										<p className="ml-auto text-sm opacity-70 self-center">
-											{driver.Constructors[0].name}
+											{convertCounstrctorIdToName(driver.Constructors[0].name)}
 										</p>
 										<p className="font-bold">{driver.points}</p>
 									</div>
@@ -180,7 +167,9 @@ const StandingsPage = ({
 										<div className="flex flex-wrap gap-1 p-1">
 											<p className="font-bold">{constructor.position}</p>
 											<p className="font-semibold">
-												{constructor.Constructor.name}
+												{convertCounstrctorIdToName(
+													constructor.Constructor.name,
+												)}
 											</p>
 											<p className="ml-auto font-bold">{constructor.points}</p>
 										</div>

@@ -3,85 +3,112 @@
 
   <url>
     <loc>https://f1helper.com/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://f1helper.com/standings</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://f1helper.com/results</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
+  </url>
+    <url>
+    <loc>https://f1helper.com/drivers</loc>
+    <lastmod>2025-03-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   
   <!-- Add year-specific pages for better indexing -->
   <url>
     <loc>https://f1helper.com/?year=2025</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://f1helper.com/?year=2024</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://f1helper.com/?year=2023</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
     <url>
     <loc>https://f1helper.com/standings?year=2025</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://f1helper.com/standings?year=2024</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://f1helper.com/standings?year=2023</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
     <url>
     <loc>https://f1helper.com/results?year=2025</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://f1helper.com/results?year=2024</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>https://f1helper.com/results?year=2023</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-03-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+      <url>
+    <loc>https://f1helper.com/drivers?year=2025</loc>
+    <lastmod>2025-03-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://f1helper.com/drivers?year=2024</loc>
+    <lastmod>2025-03-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://f1helper.com/drivers?year=2023</loc>
+    <lastmod>2025-03-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

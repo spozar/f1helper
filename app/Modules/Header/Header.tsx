@@ -73,6 +73,17 @@ const Header = () => {
 									Results
 								</p>
 							</LinkWithSearchParams>
+							<LinkWithSearchParams to={"/drivers"}>
+								<p
+									className={`font-medium transition-colors ${
+										currentPath === "/drivers"
+											? "text-white border-b-2 border-red-600"
+											: "text-gray-400 hover:text-white"
+									}`}
+								>
+									Drivers
+								</p>
+							</LinkWithSearchParams>
 						</nav>
 
 						{/* Season selector */}

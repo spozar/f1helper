@@ -1,6 +1,7 @@
 import type { Route } from "./+types/drivers";
 
 import type { LoaderFunctionArgs } from "react-router";
+import DriversPage from "~/Pages/DriversPage/DriversPage";
 
 import fetchDrivers from "~/utils/fetchers/drivers";
 
@@ -31,32 +32,26 @@ export const loader = async ({ params, request }: LoaderFunctionArgs) => {
 
 	const url = new URL(request.url);
 
-	const currentDate = new Date();
-	const march18Current = new Date(currentDate.getFullYear(), 2, 18); //First race of the season (2025)
-
-	let year = "";
-	if (url.searchParams.get("year")) {
-		year = url.searchParams.get("year") as string;
-	} else if (currentDate > march18Current) {
-		year = currentDate.getFullYear().toString();
-	} else {
-		year = "2024";
-	}
-
+	const year =
+		url.searchParams.get("year") || new Date().getFullYear().toString();
 	const drivers = await fetchDrivers(year);
 
 	return {
 		drivers,
 		driverId,
+		year,
 	};
 };
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-	const { drivers } = loaderData;
+	const { drivers, year } = loaderData;
 
 	return (
 		<>
-			<div></div>
+			<h2 className="text-2xl md:text-3xl font-bold mb-6 mt-8">
+				F1 Drivers {year}
+			</h2>
+			<DriversPage drivers={drivers} year={year} />
 		</>
 	);
 }

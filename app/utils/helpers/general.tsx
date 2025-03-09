@@ -10,3 +10,30 @@ export const hasRacePassed = (race: Race) => {
 
 	return false;
 };
+
+export const convertCounstrctorIdToName = (constructorId?: string) => {
+	switch (constructorId) {
+		case "Mercedes":
+			return "Mercedes";
+		case "Red Bull":
+			return "Red Bull";
+		case "Ferrari":
+			return "Ferrari";
+		case "McLaren":
+			return "McLaren";
+		case "Aston Martin":
+			return "Aston Martin";
+		case "Alpine F1 Team":
+			return "Alpine";
+		case "Williams":
+			return "Williams";
+		case "RB F1 Team":
+			return "Racing Bulls";
+		case "Kick Sauber":
+			return "Kick Sauber";
+		case "Haas F1 Team":
+			return "Haas";
+		default:
+			return constructorId;
+	}
+};

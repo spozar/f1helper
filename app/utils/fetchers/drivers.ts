@@ -15,7 +15,7 @@ const fetchDrivers = async (year: string) => {
 	);
 	const data = await response.json();
 
-	const results: DriversApIResponse = data.MRData.DriverTable.Drivers;
+	const results: DriversApIResponse[] = data.MRData.DriverTable.Drivers;
 
 	return results;
 };
